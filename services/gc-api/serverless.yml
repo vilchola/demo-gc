@@ -6,7 +6,8 @@ plugins:
   - serverless-prune-plugin
 
 custom:
-  stage: ${opt:stage, self:provider.stage}
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
   table:
     users: users-${self:custom.stage}
   topic:
@@ -27,13 +28,13 @@ custom:
 
 provider:
   name: aws
-  stage: dev
+  stage: ${self:custom.currentStage}
   region: us-east-1
   runtime: nodejs12.x
   endpointType: regional
   environment:
     REGION: { 'Fn::Join': ['', [{ 'Ref': 'AWS::AccountId' }]] }
-    STAGE: ${self:custom.stage}
+    STAGE: ${self:provider.stage}
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
     NODE_TLS_REJECT_UNAUTHORIZED: 0
   tracing:

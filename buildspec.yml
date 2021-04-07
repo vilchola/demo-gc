@@ -9,7 +9,9 @@ phases:
       - yarn
   pre_build:
     commands:
-      # Running tests
+      # Running lint, prettier and tests
+      - yarn lint
+      - yarn lint:fixprettier
       - yarn test
   build:
     commands:
@@ -17,5 +19,7 @@ phases:
       - yarn workspace gc-api serverless package
   post_build:
     commands:
+      # Deploying the application by using Serverless Framework
+      - yarn workspace gc-api serverless deploy --stage $STAGE
       # Application info by using Serverless Framework
-      - yarn workspace gc-api serverless info
+      - yarn workspace gc-api serverless info --stage $STAGE
