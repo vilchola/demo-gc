@@ -5,6 +5,7 @@
     "private": true,
     "scripts": {
       "offline": "node ../../node_modules/serverless/bin/serverless.js offline",
+      "package": "node ../../node_modules/serverless/bin/serverless.js package",
       "deploy": "node ../../node_modules/serverless/bin/serverless.js deploy -c services/gc-api/serverless.yml",
       "deploy:prd": "node ../../node_modules/serverless/bin/serverless.js deploy -c services/gc-api/serverless.yml --stage prd"
     }
