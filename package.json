@@ -1,0 +1,58 @@
+{
+  "name": "gc-demo",
+  "description": "Demo - Grupo de Conocimiento",
+  "version": "0.0.1",
+  "author": "Henry Vilchez <roberto1286@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "test": "set NODE_ENV=test && ./node_modules/.bin/jest --ci --coverage --verbose",
+    "lint": "./node_modules/.bin/eslint . --fix --ext .ts,.tsx",
+    "lint-output": "./node_modules/.bin/eslint-output ",
+    "lint:fixprettier": "./node_modules/.bin/prettier ./services --write"
+  },
+  "workspaces": [
+    "services/*"
+  ],
+  "dependencies": {
+    "aws-xray-sdk": "^3.2.0",
+    "inversify": "^5.0.5",
+    "reflect-metadata": "^0.1.13",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@jest/types": "^26.6.2",
+    "@types/aws-lambda": "^8.10.74",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.37",
+    "@types/webpack-node-externals": "^2.5.1",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "editorconfig": "^0.15.3",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-output": "^2.0.3",
+    "eslint-plugin-jest": "^24.3.4",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-security-node": "^1.0.14",
+    "jest": "^26.6.3",
+    "jest-html-reporter": "^3.3.0",
+    "jest-junit": "^12.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.2.1",
+    "serverless": "^2.34.0",
+    "serverless-cloudformation-sub-variables": "^0.2.1",
+    "serverless-offline": "^6.9.0",
+    "serverless-prune-plugin": "^1.4.4",
+    "serverless-webpack": "^5.4.1",
+    "source-map-support": "^0.5.19",
+    "ts-jest": "^26.5.4",
+    "ts-json-schema-generator": "^0.89.2",
+    "ts-loader": "^8.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3",
+    "typescript-json-schema": "^0.50.0",
+    "webpack": "^4.46.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}

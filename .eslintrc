@@ -1,0 +1,59 @@
+{
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "security-node"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/all",
+    "plugin:prettier/recommended",
+    "plugin:security-node/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "@typescript-eslint/adjacent-overload-signatures": 0,
+    "sort-imports": 0,
+    "no-duplicate-imports": 2,
+    "no-else-return": 2,
+    "eqeqeq": 1,
+    "no-empty-function": [
+      2,
+      {
+        "allow": [
+          "constructors"
+        ]
+      }
+    ],
+    "no-console": 2,
+    "no-debugger": 2,
+    "no-extra-boolean-cast": 2,
+    "no-unreachable": 2
+  },
+  "ignorePatterns": "**/*.test.ts",
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+package-lock.json
+yarn.lock
+junit.xml
+
+# Dependency directories
+node_modules/
+
+# Serverless directories
+.serverless/
+
+# VSC
+.vscode/*
+
+# Optional eslint cache
+.eslintcache
+
+# Test directories
+reports/

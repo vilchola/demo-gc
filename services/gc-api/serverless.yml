@@ -1,0 +1,110 @@
+service: gc-resources
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-prune-plugin
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  table:
+    users: users-${self:custom.stage}
+  topic:
+    activation: activation-${self:custom.stage}
+  queue:
+    activation: activation-${self:custom.stage}
+  s3:
+    bucket: ${self:service}-bucket-${self:custom.stage}
+  prune:
+    automatic: true
+    number: 3
+  webpack:
+    webpackConfig: ../../webpack.config.ts
+    packager: yarn
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+provider:
+  name: aws
+  stage: dev
+  region: us-east-1
+  runtime: nodejs12.x
+  endpointType: regional
+  environment:
+    REGION: { 'Fn::Join': ['', [{ 'Ref': 'AWS::AccountId' }]] }
+    STAGE: ${self:custom.stage}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    NODE_TLS_REJECT_UNAUTHORIZED: 0
+  tracing:
+    lambda: true
+    apiGateway: true
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - http:
+          path: /hello
+          method: get
+          # cors: true
+
+resources:
+  Resources:
+    # DATABASE
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.table.users}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    # TOPIC
+    ActivationTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ${self:custom.topic.activation}
+        Subscription:
+          - Endpoint:
+              Fn::GetAtt:
+                - 'ActivationSQS'
+                - 'Arn'
+            Protocol: sqs
+
+    # SQS
+    ActivationSQS:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:custom.queue.activation}
+    # SQS POLICY
+    ActivationSQSPolicy:
+      Type: AWS::SQS::QueuePolicy
+      Properties:
+        Queues:
+          - Ref: ActivationSQS
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Sid: allow-sns-${self:custom.topic.activation}
+              Effect: Allow
+              Principal: '*'
+              Resource: !GetAtt
+                - ActivationSQS
+                - Arn
+              Action:
+                - 'SQS:SendMessage'
+                - 'SQS:ReceiveMessage'
+              Condition:
+                ArnEquals:
+                  'aws:SourceArn': !Ref ActivationTopic
+
+    # S3
+    S3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3.bucket}

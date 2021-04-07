@@ -1,0 +1,20 @@
+{
+  "files": ["./libs", "./services"],
+  "formats": [
+    {
+      "name": "codeframe",
+      "output": "console"
+    },
+    {
+      "name": "html",
+      "output": "file",
+      "path": "reports/eslint/checkstyle-result.html"
+    },
+    {
+      "name": "checkstyle",
+      "output": "file",
+      "path": "reports/eslint/checkstyle-result.xml"
+    }
+  ],
+  "cliEngineConfig": {}
+}

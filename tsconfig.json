@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "lib": ["es2019"],
+    "target": "es2019",
+    "outDir": "lib"
+  },
+  "include": ["./**/*.ts", "./libs/*.ts"],
+  "exclude": ["node_modules/**/*", ".serverless/**/*", ".webpack/**/*", ".vscode/**/*"]
+}
