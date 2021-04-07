@@ -7,6 +7,7 @@
       "offline": "node ../../node_modules/serverless/bin/serverless.js offline",
       "package": "node ../../node_modules/serverless/bin/serverless.js package",
       "deploy:dev": "node ../../node_modules/serverless/bin/serverless.js deploy --stage dev",
-      "deploy:prd": "node ../../node_modules/serverless/bin/serverless.js deploy --stage prd"
+      "deploy:prd": "node ../../node_modules/serverless/bin/serverless.js deploy --stage prd",
+      "info": "node ../../node_modules/serverless/bin/serverless.js info"
     }
   }
