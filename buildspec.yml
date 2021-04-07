@@ -17,5 +17,5 @@ phases:
       - yarn workspace gc-api serverless package
   post_build:
     commands:
-      # Deploying the application by using Serverless Framework
+      # Application info by using Serverless Framework
       - yarn workspace gc-api serverless info
