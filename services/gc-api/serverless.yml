@@ -1,4 +1,4 @@
-service: gc-resources
+service: gc-demo-api
 
 plugins:
   - serverless-webpack
