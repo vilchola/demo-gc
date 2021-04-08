@@ -1,13 +1,13 @@
 {
-    "name": "gc-api",
-    "version": "0.0.1",
-    "license": "UNLICENSED",
-    "private": true,
-    "scripts": {
-      "offline": "node ../../node_modules/serverless/bin/serverless.js offline",
-      "package": "node ../../node_modules/serverless/bin/serverless.js package",
-      "deploy": "node ../../node_modules/serverless/bin/serverless.js deploy --stage dev",
-      "deploy:prd": "node ../../node_modules/serverless/bin/serverless.js deploy --stage prd",
-      "info": "node ../../node_modules/serverless/bin/serverless.js info"
-    }
+  "name": "gc-api",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "offline": "node ../../node_modules/serverless/bin/serverless.js offline",
+    "package": "node ../../node_modules/serverless/bin/serverless.js package",
+    "deploy": "node ../../node_modules/serverless/bin/serverless.js deploy --stage dev",
+    "deploy:prd": "node ../../node_modules/serverless/bin/serverless.js deploy --stage prd",
+    "info": "node ../../node_modules/serverless/bin/serverless.js info"
   }
+}

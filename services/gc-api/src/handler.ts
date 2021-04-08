@@ -7,6 +7,6 @@ export async function hello(): Promise<APIGatewayProxyResult> {
   };
 
   return new Promise((resolve) => {
-    resolve(response)
+    resolve(response);
   });
 }
