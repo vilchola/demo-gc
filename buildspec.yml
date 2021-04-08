@@ -20,6 +20,6 @@ phases:
   post_build:
     commands:
       # Deploying the application by using Serverless Framework
-      - yarn workspace gc-api serverless deploy --stage $STAGE
+      - yarn workspace gc-api serverless deploy:$STAGE
       # Application info by using Serverless Framework
-      - yarn workspace gc-api serverless info --stage $STAGE
+      - yarn workspace gc-api serverless info:$STAGE
