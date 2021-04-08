@@ -9,13 +9,13 @@ custom:
   defaultStage: dev
   currentStage: ${opt:stage, self:custom.defaultStage}
   table:
-    users: users-${self:custom.stage}
+    users: users-${self:provider.stage}
   topic:
-    activation: activation-${self:custom.stage}
+    activation: activation-${self:provider.stage}
   queue:
-    activation: activation-${self:custom.stage}
+    activation: activation-${self:provider.stage}
   s3:
-    bucket: ${self:service}-bucket-${self:custom.stage}
+    bucket: ${self:service}-bucket-${self:provider.stage}
   prune:
     automatic: true
     number: 3
